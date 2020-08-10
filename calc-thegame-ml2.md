@@ -1,6 +1,6 @@
 # Calculator: The Game <br> <font style='font-size:15px;'>A Reinforcement Learning approach</font>
 
-<font style='font-size=12px'>Elijah Justin Medina</font>
+##### By: Elijah Justin Medina
 
 ## Highlights
 - Reinforcement Learning can be used to identify the steps to take in order to process an integer to another desired integer.
