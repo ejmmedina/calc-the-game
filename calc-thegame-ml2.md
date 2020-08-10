@@ -11,7 +11,7 @@
 
 Data wrangling is a very tedious process, especially for those with minimal experience on programming. Most of the time, they would have an idea of what the form of their desired output is but at a loss on how to get there from the input data. For example,
 
-<img src="prob_statement1.png" width=60%>
+<img src="prob_statement1.PNG" width=60%>
 
 Given an arbitrary Python object like a pandas Dataframe (read from a CSV), they would have to perform a string of operations to reach a desired outcome. If this desired outcome can be manually written, machine learning models can be used to map the input to the output. However, the process and steps to get there will remain a blackbox using traditional machine learning or even deep learning techniques. Our approach to this problem is the use of reinforcement learning wherein the agent is the Python object and the actions it takes are Python methods, changing its state until it becomes similar to the target output.
 
@@ -57,7 +57,7 @@ for n in range(2, 6):
             if i!=1:
                 primes.append(i)
             #Avoid infinite loops which only happens when i = 1 in this case.
-            if n == n/i: 
+            if n == n/i:
                 break
         i += 1
 
@@ -72,7 +72,7 @@ fig.suptitle("Probabilities of numbers operated to agent");
 ```
 
 
-![png](output_6_0.png)
+![png](output_img/output_6_0.png)
 
 
 **Observations**
@@ -133,7 +133,7 @@ Reward rules:
     - Reached a boundary: -1000
     - Got closer to target: +0.1
     - Got farther from target: -1.1
-    
+
 With these rules, in any state, the agent can observe where the target value is, rewarding when it gets closer to it and suffering a penalty if it goes farther from the target.
 
 
@@ -172,7 +172,7 @@ def div(x, num=None, primes=primes, probs=probs_primes):
     else:
         div_num = np.random.choice(primes, p=probs)
     return (round(x / div_num), f'div:{div_num}')
-    
+
 actions = ['add', 'subtract', 'mult', 'div']
 move = {'add': add,
         'subtract': subtract,
@@ -207,7 +207,7 @@ def rewards(new_val, out_state, curr_state, s_rew, walk_rew):
 #         reward = f_rew
 #     else:
 #         reward = walk_rew
-        
+
     return reward
 ```
 
@@ -278,7 +278,7 @@ for trial in range(4):
     =============Trial 1=============
     =============Trial 2=============
     =============Trial 3=============
-    
+
 
 #### Number of iterations to converge
 
@@ -298,7 +298,7 @@ plt.ylabel("Number of iterations to converge");
 ```
 
 
-![png](output_14_0.png)
+![png](output_img/output_14_0.png)
 
 
 For one trial, an optimal solution was found:
@@ -313,7 +313,7 @@ plt.ylabel("Number of iterations to converge");
 ```
 
 
-![png](output_16_0.png)
+![png](output_img/output_16_0.png)
 
 
 The decreasing number of iterations to converge indicates that RL has found the solution in minimum steps. The found solution is shown below:
@@ -342,7 +342,7 @@ while val!=out_state:
     mult:2
     mult:2
     subtract:1
-    
+
 
 In this case, the operations performed are only subtraction and multiplication of the lowest numbers. This is to be expected since the probabilities are higher for lower numbers. But more than that, since the agent is rewarded for getting closer and punished for getting farther, regardless of how much it gets closer or farther (same reward), it is easier for the model to operate a smaller number.
 
@@ -351,7 +351,7 @@ Rules:
     - Reached the goal number: +10
     - Reached a boundary: -1000
     - Walk: -0.2
-    
+
 With these rules, the agent can only observe its current state, without any reward or penalty for getting closer or farther from the target.
 
 
@@ -371,7 +371,7 @@ for n in range(2, 6):
             if i!=1:
                 primes.append(i)
             #Avoid infinite loops which only happens when i = 1 in this case.
-            if n == n/i: 
+            if n == n/i:
                 break
         i += 1
 
@@ -407,7 +407,7 @@ def div(x, num=None, primes=primes, probs=probs_primes):
     else:
         div_num = np.random.choice(primes, p=probs)
     return (round(x / div_num), f'div:{div_num}')
-    
+
 actions = ['add', 'subtract', 'mult', 'div']
 move = {'add': add,
         'subtract': subtract,
@@ -434,7 +434,7 @@ def rewards(new_val, out_state, curr_state, s_rew, walk_rew):
         reward = wall_hit_rew
     else:
         reward = walk_rew
-        
+
     return reward
 ```
 
@@ -506,7 +506,7 @@ for trial in range(5):
     =============Trial 2=============
     =============Trial 3=============
     =============Trial 4=============
-    
+
 
 #### Number of iterations to converge
 
@@ -527,7 +527,7 @@ plt.ylabel("Number of iterations to converge");
 ```
 
 
-![png](output_25_0.png)
+![png](output_img/output_25_0.png)
 
 
 Looking at the found solution with Trial 3 (the trial that properly converged)
@@ -552,7 +552,7 @@ while ((val!=out_state) and (i<10)):
     add:6 7
     mult:3 21
     mult:3 63
-    
+
 
 Unlike with the first rule, the solution found here is not biased towards lower values, which also led to less number of operations to converge (5 operations with this rule vs 6 of Rule 1).
 
@@ -562,7 +562,7 @@ Unlike with the first rule, the solution found here is not biased towards lower 
 
 In both rule sets, most of the trials failed to converge properly. This is due to the fact that there are too many states that our agent can take and too many actions it can take. The reinforcement learner should be given more time to explore (i.e. more iterations and slower decay in probability of exploration) if this is the case. On the first attempt, the project was constrained to floats rather than integers, but this led to infinite possible states. So it becomes impossible for the learner to properly fill the Q-Learning table.
 
-The convergence of the learner is heavily dependent on the first few convergences. If the table is filled with the solution of minimal steps, the latter part of the iterations wherein the agent is mostly purely exploiting always converges with said minimal steps. Alternatively, some trials tend to be stuck to a periodic solution (e.g. it performs the same two operations every time), so an agent purely exploiting won't ever converge as it will only change between two values. 
+The convergence of the learner is heavily dependent on the first few convergences. If the table is filled with the solution of minimal steps, the latter part of the iterations wherein the agent is mostly purely exploiting always converges with said minimal steps. Alternatively, some trials tend to be stuck to a periodic solution (e.g. it performs the same two operations every time), so an agent purely exploiting won't ever converge as it will only change between two values.
 
 **Resulting solution**
 
@@ -576,7 +576,7 @@ Q-Learning cannot be used for Python object manipulation if the number of states
 
 ## Acknowledgement
 
-I would like to acknowledge Prof Chris and Prof Erika for sharing their knowledge to us which contributed immensely to the completion of this project. More importantly, Dr. Bunao for sharing his knowledge on reinforcement learning techniques, from which the codes here are based on. Lastly, my classmates for the exchange of ideas which helped alot for this project. 
+I would like to acknowledge Prof Chris and Prof Erika for sharing their knowledge to us which contributed immensely to the completion of this project. More importantly, Dr. Bunao for sharing his knowledge on reinforcement learning techniques, from which the codes here are based on. Lastly, my classmates for the exchange of ideas which helped alot for this project.
 
 
 ```python
