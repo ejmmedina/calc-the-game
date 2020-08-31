@@ -10,4 +10,4 @@ As next steps, other rule sets should be explored (different rewards and punishm
 
 ##### Report and analysis
 
-The full report is included in the Jupyter notebook. If you have any questions regarding this study, please send me a message via <a href="mailto:elijahjustinmedina@gmail.com">e-mail</a> or <a href="https://www.linkedin.com/in/elijah-justin-medina/">LinkedIn</a>.
+The full report is included in the <a href="https://github.com/ejmmedina/calc-the-game/blob/master/calc-thegame-ml2.md"Jupyter notebook</a>. If you have any questions regarding this study, please send me a message via <a href="mailto:elijahjustinmedina@gmail.com">e-mail</a> or <a href="https://www.linkedin.com/in/elijah-justin-medina/">LinkedIn</a>.
